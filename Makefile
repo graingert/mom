@@ -19,10 +19,10 @@ help:
 	@echo "    push        - 'git push' to all hosted repositories"
 
 release: clean test upload-doc
-	python setup.py sdist upload
+	python setup.py sdist bdist_wheel upload
 
 dist: clean
-	python setup.py sdist
+	python setup.py sdist bdist_wheel
 
 build: doc
 	@bin/python setup.py build

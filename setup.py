@@ -45,42 +45,41 @@ except ImportError:
   pycrypto_complain(None)
 
 
-install_requires = [
+setup(
+    name="mom",
+    version="0.1.3",
+    license="Apache Software License 2.0",
+    url="https://github.com/gorakhargosh/mom",
+    description="Python utility library.",
+    long_description=__doc__,
+    author="Yesudeep Mangalapilly",
+    author_email="yesudeep@google.com",
+    zip_safe=True,
+    platforms="any",
+    packages=["mom"],
+    include_package_data=True,
+    install_requires=[
+        "pyasn1 >= 0.1.1",
+        'simplejson; python_version<"2.7"',
+    ],
     # Binary dependency. Allow the user to decide whether she wants to pull this
     # in or not. For example, App Engine provides its own version of PyCrypto
     # which is written in pure Python. Forcing this dependency will cause
     # compatibility problems on that platform.
     #"PyCrypto >=2.0.1",
+    extras_require={
+        "crypto": ["PyCrypo>=2.0.1"],
+    },
+    keywords=' '.join([
+        "python",
+        "utilities",
+    ]),
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: Apache Software License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
+        "Topic :: Software Development :: Libraries :: Python Modules",
     ]
-if sys.version_info < (3, 0, 0):
-  install_requires.append("pyasn1 >=0.0.13b")
-if sys.version_info < (2, 6, 0):
-  install_requires.append("simplejson >=2.1.3")
-
-
-setup(name="mom",
-      version="0.1.3",
-      license="Apache Software License 2.0",
-      url="http://github.com/gorakhargosh/mom",
-      description="Python utility library.",
-      long_description=__doc__,
-      author="Yesudeep Mangalapilly",
-      author_email="yesudeep@google.com",
-      zip_safe=True,
-      platforms="any",
-      packages=["mom"],
-      include_package_data=True,
-      install_requires=install_requires,
-      keywords=' '.join([
-          "python",
-          "utilities",
-          ]),
-      classifiers=[
-          "Development Status :: 4 - Beta",
-          "Intended Audience :: Developers",
-          "License :: OSI Approved :: Apache Software License",
-          "Operating System :: OS Independent",
-          "Programming Language :: Python",
-          "Topic :: Software Development :: Libraries :: Python Modules",
-          ]
-      )
+)
